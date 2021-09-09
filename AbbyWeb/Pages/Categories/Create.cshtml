@@ -8,12 +8,12 @@
             <hr />
 		</div>
 		<div class="mb-3">
-			Name:
-			<input type="text" name="categoryName" />
+			<label asp-for="Category.Name"></label>
+			<input asp-for="Category.Name" class="form-control" />
 		</div>
 		<div class="mb-3">
-			Display Order:
-			<input type="text" name="displayOrder" />
+			<label asp-for="Category.DisplayOrder"></label>
+			<input asp-for="Category.DisplayOrder" class="form-control" />
 		</div>
 		<button type="submit" class="btn btn-primary" style="width:150px;">Create</button>
 	</div>
