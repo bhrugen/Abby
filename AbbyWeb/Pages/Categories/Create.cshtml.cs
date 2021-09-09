@@ -26,6 +26,10 @@ public class CreateModel : PageModel
 
     public async Task<IActionResult> OnPost()
     {
+        if (Category.Name == Category.DisplayOrder.ToString())
+        {
+            ModelState.AddModelError(string.Empty, "The DisplayOrder cannot exactly match the Name.");
+        }
         if (ModelState.IsValid)
         {
             await _db.Category.AddAsync(Category);
