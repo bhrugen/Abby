@@ -26,8 +26,12 @@ public class CreateModel : PageModel
 
     public async Task<IActionResult> OnPost()
     {
-        await _db.Category.AddAsync(Category);
-        await _db.SaveChangesAsync();
-        return RedirectToPage("Index");
+        if (ModelState.IsValid)
+        {
+            await _db.Category.AddAsync(Category);
+            await _db.SaveChangesAsync();
+            return RedirectToPage("Index");
+        }
+        return Page();
     }
 }
