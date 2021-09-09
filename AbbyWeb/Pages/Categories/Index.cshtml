@@ -1,4 +1,39 @@
 ﻿@page
 @model AbbyWeb.Pages.Categories.IndexModel
-@{
-}
+
+<div class="container p-3">
+	<div class="row pt-4">
+		<div class="col-6">
+			<h2 class="text-primary">Category List</h2>
+		</div>
+		<div class="col-6">
+
+		</div>
+	</div>
+
+	<br /><br />
+
+	<table class="table table-bordered table-striped" style="width:100%">
+		<thead>
+			<tr>
+				<th>
+					Category Name
+				</th>
+				<th>
+					Display Order
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach(var obj in Model.Categories)
+			{
+				<tr>
+					<td width="50%">@obj.Name</td>
+					<td width="30%">@obj.DisplayOrder</td>
+				</tr>
+			}
+			
+		</tbody>
+	</table>
+
+</div>
