@@ -1,0 +1,26 @@
+﻿@page
+@model AbbyWeb.Pages.Admin.FoodTypes.DeleteModel
+
+<form method="post">
+	<input hidden asp-for="FoodType.Id" />
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary pl-3">Delete FoodType</h2>
+            <hr />
+		</div>
+		<div class="mb-3">
+			<label asp-for="FoodType.Name"></label>
+			<input asp-for="FoodType.Name" disabled class="form-control" />
+		</div>
+		
+		<button type="submit" class="btn btn-danger" style="width:150px;">Delete</button>
+		<a asp-page="Index" class="btn btn-secondary"  style="width:150px;"> Back to List</a>
+	</div>
+	
+</form>
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial"/>
+	}
+}

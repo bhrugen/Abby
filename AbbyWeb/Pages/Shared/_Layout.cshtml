@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark  box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary  box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">AbbyWeb</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -23,8 +23,16 @@
                         <li class="nav-item">
                             <a class="nav-link " asp-area="" asp-page="/Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Admin/Categories/Index">Categories</a>
+                        
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" asp-area="" asp-page="/Admin/Categories/Index">Categories</a>
+                            <a class="dropdown-item" asp-area="" asp-page="/Admin/FoodTypes/Index">FoodTypes</a>
+                           
+                            <div class="dropdown-divider"></div>
+                           
+                          </div>
                         </li>
                     </ul>
                 </div>
@@ -38,7 +46,7 @@
         </main>
     </div>
 
-    <footer class="footer text-muted bg-dark">
+    <footer class="footer text-muted bg-primary">
         <div class="container">
             &copy; 2021 - AbbyWeb
         </div>
