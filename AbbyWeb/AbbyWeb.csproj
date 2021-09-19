@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Abby.DataAccess\Abby.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Customer\" />
+  </ItemGroup>
+
 </Project>

@@ -1,11 +1,10 @@
 ﻿@page
-@model AbbyWeb.Pages.Categories.EditModel
+@model AbbyWeb.Pages.Admin.Categories.CreateModel
 
 <form method="post">
-	<input hidden asp-for="Category.Id" />
 	<div class="border p-3 mt-4">
 		<div class="row pb-2">
-			<h2 class="text-primary pl-3">Edit Category</h2>
+			<h2 class="text-primary pl-3">Create Category</h2>
             <hr />
 		</div>
 		<div asp-validation-summary="All"></div>
@@ -19,8 +18,9 @@
 			<input asp-for="Category.DisplayOrder" class="form-control" />
 			<span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>
 		</div>
-		<button type="submit" class="btn btn-primary" style="width:150px;">Update</button>
+		<button type="submit" class="btn btn-primary" style="width:150px;">Create</button>
 		<a asp-page="Index" class="btn btn-secondary"  style="width:150px;"> Back to List</a>
+       
 	</div>
 	
 </form>
