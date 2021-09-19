@@ -1,5 +1,7 @@
 
 using Abby.DataAccess.Data;
+using Abby.DataAccess.Repository;
+using Abby.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,7 +15,7 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")
     ));
-
+builder.Services.AddScoped<ICategoryRepository,  CategoryRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
