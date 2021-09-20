@@ -25,7 +25,7 @@
 								<p> @Html.Raw(menuItem.Description)</p>
 							</div>
 							<div class="col-12 p-1">
-								<a class="btn btn-dark form-control btn-sm p-2" style="height:40px">View Details</a>
+								<a asp-page="Details" asp-route-id="@menuItem.Id" class="btn btn-dark form-control btn-sm p-2" style="height:40px">View Details</a>
 							</div>
 						</div>
 					</div>
