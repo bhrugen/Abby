@@ -11,9 +11,40 @@
 		</div>
 		<div asp-validation-summary="All"></div>
 		<div class="mb-3">
-			@*<label asp-for="FoodType.Name"></label>
-			<input asp-for="FoodType.Name" class="form-control" />
-			<span asp-validation-for="FoodType.Name" class="text-danger"></span>*@
+			<label asp-for="MenuItem.Name"></label>
+			<input asp-for="MenuItem.Name" class="form-control" />
+			<span asp-validation-for="MenuItem.Name" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="MenuItem.Description"></label>
+			<input asp-for="MenuItem.Description" class="form-control" />
+			<span asp-validation-for="MenuItem.Description" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="MenuItem.Price"></label>
+			<input asp-for="MenuItem.Price" class="form-control" />
+			<span asp-validation-for="MenuItem.Price" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="MenuItem.Image"></label>
+			<input type="file" name="files" id="uploadBox" class="form-control" />
+		</div>
+		<div class="mb-3">
+			<label asp-for="MenuItem.CategoryId"></label>
+			<select asp-for="MenuItem.CategoryId" asp-items="Model.CategoryList" class="form-select">
+				<option disabled selected>-Select Category-</option>
+			</select>
+
+			<span asp-validation-for="MenuItem.CategoryId" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="MenuItem.FoodTypeId"></label>
+			<select asp-for="MenuItem.FoodTypeId" asp-items="Model.FoodTypeList" class="form-select">
+				<option disabled selected>-Select Food Type-</option>
+			</select>
+
+			<span asp-validation-for="MenuItem.FoodTypeId" class="text-danger"></span>
 		</div>
 		
 		<button type="submit" class="btn btn-primary" style="width:150px;">Create</button>
