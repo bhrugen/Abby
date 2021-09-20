@@ -3,6 +3,7 @@ using Abby.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AbbyWeb.Pages.Customer.Home
 {
@@ -21,7 +22,7 @@ namespace AbbyWeb.Pages.Customer.Home
         public void OnGet()
         {
             MenuItemList = _unitOfWork.MenuItem.GetAll(includeProperties: "Category,FoodType");
-            CategoryList = _unitOfWork.Category.GetAll();
+            CategoryList = _unitOfWork.Category.GetAll(orderby: u=>u.OrderBy(c=>c.DisplayOrder));
         }
     }
 }
