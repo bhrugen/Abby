@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Abby.DataAccess.Data;
+using Abby.DataAccess.Repository.IRepository;
 using Abby.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,15 +12,18 @@ namespace AbbyWeb.Pages.Admin.FoodTypes;
 
 public class IndexModel : PageModel
 {
-    private readonly ApplicationDbContext _db;
+    private readonly IUnitOfWork _unitOfWork;
+
     public IEnumerable<FoodType> FoodTypes { get; set; }
-    public IndexModel(ApplicationDbContext db)
+
+    public IndexModel(IUnitOfWork unitOfWork)
     {
-        _db=db;
+        _unitOfWork = unitOfWork;
     }
+    
 
     public void OnGet()
     {
-        FoodTypes = _db.FoodType;
+        FoodTypes = _unitOfWork.FoodType.GetAll();
     }
 }
