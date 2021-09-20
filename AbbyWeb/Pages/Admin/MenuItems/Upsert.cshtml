@@ -9,7 +9,7 @@
 			</h2>
             <hr />
 		</div>
-		<div asp-validation-summary="All"></div>
+		
 		<div class="mb-3">
 			<label asp-for="MenuItem.Name"></label>
 			<input asp-for="MenuItem.Name" class="form-control" />
@@ -17,7 +17,7 @@
 		</div>
 		<div class="mb-3">
 			<label asp-for="MenuItem.Description"></label>
-			<input asp-for="MenuItem.Description" class="form-control" />
+			<textarea asp-for="MenuItem.Description" class="form-control"></textarea>
 			<span asp-validation-for="MenuItem.Description" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
@@ -55,6 +55,13 @@
 </form>
 
 @section Scripts{
+	 <script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+      toolbar_mode: 'floating',
+   });
+  </script>
 	@{
 		<partial name="_ValidationScriptsPartial"/>
 	}
