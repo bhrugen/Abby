@@ -13,13 +13,14 @@ namespace AbbyWeb.Pages.Admin.Categories;
 [BindProperties]
 public class CreateModel : PageModel
 {
-    private readonly ICategoryRepository _dbCategory;
-    
+    private readonly IUnitOfWork _unitOfWork;
+
     public Category Category { get; set; }
 
-    public CreateModel(ICategoryRepository dbCategory)
+
+    public CreateModel(IUnitOfWork unitOfWork)
     {
-        _dbCategory = dbCategory;
+        _unitOfWork = unitOfWork;
     }
     public void OnGet()
     {
@@ -33,8 +34,8 @@ public class CreateModel : PageModel
         }
         if (ModelState.IsValid)
         {
-            _dbCategory.Add(Category);
-            _dbCategory.Save();
+            _unitOfWork.Category.Add(Category);
+            _unitOfWork.Save();
             TempData["success"] = "Category created successfully";
             return RedirectToPage("Index");
         }
