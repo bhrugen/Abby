@@ -29,8 +29,13 @@ public class UpsertModel : PageModel
         _hostEnvironment = hostEnvironment;
         MenuItem = new();
     }
-    public void OnGet()
+    public void OnGet(int? id)
     {
+        if (id != null)
+        {
+            //Edit
+            MenuItem = _unitOfWork.MenuItem.GetFirstOrDefault(u => u.Id == id);
+        }
         CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem()
         {
             Text = i.Name,
