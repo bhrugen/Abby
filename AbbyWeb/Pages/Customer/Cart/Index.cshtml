@@ -3,6 +3,13 @@
 
 <form method="post">
 	<br />
+	@if (Model.ShoppingCartList.Count() == 0)
+	{
+		 <div>
+                Please add items to shopping cart.
+            </div>
+	}
+	else{
 	<div class="container">
 		<div class="card">
 			<div class="card-header bg-dark text-light ml-0 ">
@@ -79,5 +86,6 @@
 			</div>
 		</div>
 	</div>
+	}
 </form>
 
