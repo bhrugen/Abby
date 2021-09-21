@@ -1,5 +1,6 @@
 ﻿@page
 @model RegisterModel
+@using Abby.Utility
 @{
     ViewData["Title"] = "Register";
 }
@@ -12,35 +13,40 @@
             <h2>Create a new account.</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
+            <div class="form-floating my-2">
                 <input asp-for="Input.FirstName" class="form-control"  aria-required="true" />
                 <label asp-for="Input.FirstName"></label>
                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>
             </div>
-            <div class="form-floating">
+            <div class="form-floating my-2">
                 <input asp-for="Input.LastName" class="form-control"  aria-required="true" />
                 <label asp-for="Input.LastName"></label>
                 <span asp-validation-for="Input.LastName" class="text-danger"></span>
             </div>
-            <div class="form-floating">
+            <div class="form-floating my-2">
                 <input asp-for="Input.PhoneNumber" class="form-control" aria-required="true" />
                 <label asp-for="Input.PhoneNumber"></label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
-            <div class="form-floating">
+            <div class="form-floating my-2">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
                 <label asp-for="Input.Email"></label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
-            <div class="form-floating">
+            <div class="form-floating my-2">
                 <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
                 <label asp-for="Input.Password"></label>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
-            <div class="form-floating">
+            <div class="form-floating my-2">
                 <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
                 <label asp-for="Input.ConfirmPassword"></label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-floating my-2">
+                <input type="radio" name="rdUserRole" value="@SD.ManagerRole" />@SD.ManagerRole
+                <input type="radio" name="rdUserRole" value="@SD.KitchenRole" />@SD.KitchenRole
+                <input type="radio" name="rdUserRole" value="@SD.FrontDeskRole" />@SD.FrontDeskRole
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>
