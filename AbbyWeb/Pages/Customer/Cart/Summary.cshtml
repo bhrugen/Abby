@@ -30,6 +30,7 @@
 									</div>
 									<div class="col-9">
 										<input asp-for="OrderHeader.PickupName" class="form-control" />
+										<span asp-validation-for="OrderHeader.PickupName" class="text-danger"></span>
 									</div>
 								</div>
 								<div class="row my-1">
@@ -38,6 +39,7 @@
 									</div>
 									<div class="col-9">
 										<input asp-for="OrderHeader.PhoneNumber" class="form-control" />
+										<span asp-validation-for="OrderHeader.PhoneNumber" class="text-danger"></span>
 									</div>
 								</div>
 								<div class="row my-1">
@@ -46,6 +48,7 @@
 									</div>
 									<div class="col-9">
 										<input value=""  asp-for="OrderHeader.PickUpDate" type="date" class="form-control" />
+										<span asp-validation-for="OrderHeader.PickUpDate" class="text-danger"></span>
 									</div>
 								</div>
 								<div class="row my-1">
@@ -54,6 +57,7 @@
 									</div>
 									<div class="col-9">
 										<input value=""  asp-for="OrderHeader.PickUpTime"  type="time" class="form-control" />
+										<span asp-validation-for="OrderHeader.PickUpTime" class="text-danger"></span>
 									</div>
 								</div>
 								<div class="row my-1">
@@ -101,3 +105,8 @@
 	</div>
 </form>
 
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial"/>
+	}
+}
