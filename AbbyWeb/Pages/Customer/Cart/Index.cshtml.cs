@@ -34,5 +34,12 @@ namespace AbbyWeb.Pages.Customer.Cart
 				}
             }
         }
+
+        public IActionResult OnPostPlus(int cartId)
+		{
+            var cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
+            _unitOfWork.ShoppingCart.IncrementCount(cart,1);
+            return RedirectToPage("/Customer/Cart/Index");
+        }
     }
 }

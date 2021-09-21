@@ -36,15 +36,18 @@
 							<h6><strong>$@item.MenuItem.Price <span class="text-muted">x</span> @item.Count </strong></h6>
 						</div>
 						<div class="col-6 col-sm-4 col-lg-6">
-							<button type="submit" class="btn btn-primary">
+							<button type="submit" class="btn btn-primary"
+							asp-page-handler="plus" asp-route-cartId="@item.Id">
 								<i class="bi bi-plus-square"></i>
 							</button>
-							<button type="submit" class="btn btn-danger">
+							<button type="submit" class="btn btn-danger"
+							asp-page-handler="minus" asp-route-cartId="@item.Id">
 								<i class="bi bi-dash-square"></i>
 							</button>
 						</div>
 						<div class="col-2 col-sm-4 col-lg-2 text-right">
-							<button type="submit" class="btn btn-outline-danger">
+							<button type="submit" class="btn btn-outline-danger"
+							asp-page-handler="remove" asp-route-cartId="@item.Id">
 								<i class="bi bi-trash-fill"></i>
 							</button>
 						</div>
