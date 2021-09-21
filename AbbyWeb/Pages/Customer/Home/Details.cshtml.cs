@@ -14,13 +14,15 @@ namespace AbbyWeb.Pages.Customer.Home
             _unitOfWork = unitOfWork;
         }
 
-		public MenuItem MenuItem { get; set; }
-        
-        public int Count { get; set; }
+        [BindProperty]
+		public ShoppingCart ShoppingCart { get; set; }
 
         public void OnGet(int id)
         {
-            MenuItem = _unitOfWork.MenuItem.GetFirstOrDefault(u => u.Id == id,includeProperties:"Category,FoodType");
+            ShoppingCart = new()
+            {
+                MenuItem = _unitOfWork.MenuItem.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,FoodType")
+            };
         }
     }
 }
