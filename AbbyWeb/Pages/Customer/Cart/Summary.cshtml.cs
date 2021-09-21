@@ -83,7 +83,7 @@ namespace AbbyWeb.Pages.Customer.Cart
                 _unitOfWork.Save();
 
 
-                 var domain = "http://localhost:4242";
+                 var domain = "https://localhost:44322/";
                 var options = new SessionCreateOptions
                 {
                     LineItems = new List<SessionLineItemOptions>
@@ -92,14 +92,15 @@ namespace AbbyWeb.Pages.Customer.Cart
                   {
                     PriceData = new SessionLineItemPriceDataOptions
                     {
-                        UnitAmount= (long)OrderHeader.OrderTotal*100,
+                        UnitAmount= (long)(OrderHeader.OrderTotal*100),
                         Currency="usd",
                         ProductData= new SessionLineItemPriceDataProductDataOptions
                         {
-                            Name = "Abby Food Order"
+                            Name = "Abby Food Order",
+                            Description="Total Distinct Item - "+quantity
                         },
                     },
-                    Quantity = quantity
+                    Quantity = 1
                   },
                 },
                     PaymentMethodTypes = new List<string>
