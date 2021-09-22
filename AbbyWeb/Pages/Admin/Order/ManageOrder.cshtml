@@ -5,14 +5,15 @@
 <h1 class="text-primary py-3">Manage Order's</h1>
 <form method="post">
     <div class="container row bg-white p-2 mb-3 rounded">
-
+        @foreach(var item in Model.OrderDetailVM){
         <div class="col-12 pb-3 pt-3 mt-4 border  rounded">
                 <div class="row">
                     <div class="col-4">
-                        Order Number : XX
+                        Order Number : @item.OrderHeader.Id
                         <ul class="text-info">
-                                <li>Name x Count</li>
-
+                            @foreach(var details in item.OrderDetails){
+                                <li>@details.Name x @details.Count</li>
+                            }
                         </ul>
                     </div>
                     <div class="col-4 pb-2">
@@ -20,9 +21,9 @@
                             <div class="input-group-append">
                                 <span class="input-group-text bg-secondary border">Time</span>
                             </div>
-                            <input type="text" class="form-control" readonly />
+                            <input type="text"  value="@item.OrderHeader.PickUpTime" class="form-control" readonly />
                         </div>
-                        <textarea readonly class="rounded border form-control" rows="3" ></textarea>
+                        <textarea readonly  asp-for="@item.OrderHeader.Comments"  class="rounded border form-control" rows="3" ></textarea>
                     </div>
                     <div class="col-3 offset-1 d-flex align-content-center">
                         <div class="col-12">
@@ -45,7 +46,7 @@
                     </div>
                 </div>
         </div>
-       
+       }
     </div>
 
 </form>
