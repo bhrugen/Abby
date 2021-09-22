@@ -3,11 +3,25 @@
 
 
 <div class="container p-3">
-	<div class="row pt-4">
-		<div class="col-6">
+	<div class="d-flex justify-content-between">
+		<div class="p-2">
 			<h2 class="text-primary">Order List</h2>
 		</div>
-		<div class="col-6 text-end">
+		<div class="p-2">
+			<ul class="list-group list-group-horizontal-sm">
+				<a style="text-decoration:none;" asp-route="OrderList" asp-route-status="cancelled">
+					<li class="list-group-item">Cancelled</li>
+				</a>
+				<a style="text-decoration:none;" asp-route="OrderList" asp-route-status="completed">
+					<li class="list-group-item">Completed</li>
+				</a>
+				<a style="text-decoration:none;" asp-route="OrderList" asp-route-status="inProcess">
+					<li class="list-group-item">In Process</li>
+				</a>
+				<a style="text-decoration:none;" asp-route="OrderList" asp-route-status="submitted">
+					<li class="list-group-item">Submitted</li>
+				</a>
+			</ul>
 		</div>
 	</div>
 
