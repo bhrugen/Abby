@@ -78,8 +78,8 @@ namespace AbbyWeb.Pages.Customer.Cart
                     _unitOfWork.OrderDetail.Add(orderDetails);
                     
 				}
-                int quantity = ShoppingCartList.ToList().Count;
-                _unitOfWork.ShoppingCart.RemoveRange(ShoppingCartList);
+                
+                //_unitOfWork.ShoppingCart.RemoveRange(ShoppingCartList);
                 _unitOfWork.Save();
 
 
@@ -125,6 +125,7 @@ namespace AbbyWeb.Pages.Customer.Cart
 
                 OrderHeader.SessionId= session.Id;
                 OrderHeader.PaymentIntentId = session.PaymentIntentId;
+                _unitOfWork.Save();
                 return new StatusCodeResult(303);
             }
 
