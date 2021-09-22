@@ -19,7 +19,7 @@
                         Name
                     </div>
                     <div class="col-md-9 col-12">
-                        <input asp-for="" disabled class="form-control" />
+                        <input asp-for="OrderDetailVM.OrderHeader.PickupName" disabled class="form-control" />
                     </div>
                 </div>
                 <div class="form-group row py-1">
@@ -27,7 +27,7 @@
                        Email
                     </div>
                     <div class="col-md-9 col-12">
-                        <input  disabled class="form-control" />
+                        <input  asp-for="OrderDetailVM.OrderHeader.ApplicationUser.Email" disabled class="form-control" />
                     </div>
                 </div>
                 <div class="form-group row py-1">
@@ -35,7 +35,7 @@
                         Phone Number
                     </div>
                     <div class="col-md-9 col-12">
-                        <input disabled class="form-control" />
+                        <input  asp-for="OrderDetailVM.OrderHeader.PhoneNumber" disabled class="form-control" />
                     </div>
                 </div>
                 <div class="form-group row py-1">
@@ -43,15 +43,15 @@
                        Order Total
                     </div>
                     <div class="col-md-9 col-12">
-                        <input disabled class="form-control" />
+                        <input disabled  asp-for="OrderDetailVM.OrderHeader.OrderTotal" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group row py-1">
                     <div class="col-md-3 col-12 text-primary">
-                        Order Date Time
+                        Order Pickup Date Time
                     </div>
                     <div class="col-md-9 col-12">
-                        <input  disabled class="form-control" />
+                        <input value="@Model.OrderDetailVM.OrderHeader.PickUpTime.ToShortDateString() @Model.OrderDetailVM.OrderHeader.PickUpTime.ToShortTimeString()" disabled class="form-control" />
                     </div>
                 </div>
                 <div class="form-group row py-1">
@@ -59,7 +59,7 @@
                         Comments
                     </div>
                     <div class="col-md-9 col-12">
-                        <textarea disabled class="form-control" rows="3" ></textarea>
+                        <textarea asp-for="OrderDetailVM.OrderHeader.Comments" disabled class="form-control" rows="3" ></textarea>
                     </div>
                 </div>
 
@@ -68,22 +68,22 @@
             <div class="col-lg-4 col-12">
                 <h4 class="d-flex justify-content-between align-content-center mb-3">
                     <span class="text-muted">Order ID: </span>
-                    <span class="badge badge-secondary badge-pill">XXX</span>
+                    <span class="badge badge-secondary badge-pill">@Model.OrderDetailVM.OrderHeader.Id</span>
                 </h4>
                 <ul class="list-group mb-3">
-                    
+                    @foreach(var detail in Model.OrderDetailVM.OrderDetails){
                         <li class="list-group-item d-flex justify-content-between">
                             <div>
-                                <h6 class="my-0">XXNAMEXX</h6>
-                                <small class="text-muted">Quantity : XXCountXX</small>
+                                <h6 class="my-0">@detail.Name</h6>
+                                <small class="text-muted">Quantity : @detail.Count</small>
                             </div>
-                            <span class="text-muted">$$$</span>
+                            <span class="text-muted">$@(detail.Price*detail.Count)</span>
                         </li>
-                    
+                    }
 
                     <li class="list-group-item d-flex justify-content-between bg-light">
                         <span class="text-info"> Total (USD)</span>
-                        <strong class="text-info">$$$$$</strong>
+                        <strong class="text-info">$@Model.OrderDetailVM.OrderHeader.OrderTotal</strong>
                     </li>
 
                 </ul>
