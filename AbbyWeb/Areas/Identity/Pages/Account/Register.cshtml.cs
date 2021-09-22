@@ -130,13 +130,7 @@ namespace AbbyWeb.Areas.Identity.Pages.Account
                 user.PhoneNumber = Input.PhoneNumber;
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                if(!await _roleManager.RoleExistsAsync(SD.KitchenRole))
-				{
-                    _roleManager.CreateAsync(new IdentityRole(SD.KitchenRole)).GetAwaiter().GetResult();
-                    _roleManager.CreateAsync(new IdentityRole(SD.ManagerRole)).GetAwaiter().GetResult();
-                    _roleManager.CreateAsync(new IdentityRole(SD.FrontDeskRole)).GetAwaiter().GetResult();
-                    _roleManager.CreateAsync(new IdentityRole(SD.CustomerRole)).GetAwaiter().GetResult();
-                }
+               
                 if (result.Succeeded)
                 {
                     string role = Request.Form["rdUserRole"].ToString();
@@ -182,6 +176,11 @@ namespace AbbyWeb.Areas.Identity.Pages.Account
                     }
                     else
                     {
+                        if (User.IsInRole(SD.ManagerRole))
+                        {
+                            TempData["success"] = "Employee registered successfully";
+                            return RedirectToPage("/Customer/Home/Index");
+                        }
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }

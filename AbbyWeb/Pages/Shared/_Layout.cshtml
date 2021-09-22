@@ -28,25 +28,33 @@
                         <li class="nav-item">
                             <a class="nav-link " asp-area="" asp-page="/Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-page="/Admin/Order/OrderList">Order List</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-page="/Admin/Order/ManageOrder">Manage Order</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item" asp-area="" asp-page="/Admin/Categories/Index">Categories</a>
-                            <a class="dropdown-item" asp-area="" asp-page="/Admin/FoodTypes/Index">Food Types</a>
-                           <a class="dropdown-item" asp-area="" asp-page="/Admin/MenuItems/Index">Menu Items</a>
-                           
-                            <div class="dropdown-divider"></div>
-                           
-                          </div>
-                        </li>
-                       
-                             <li>
+                        @if (User.IsInRole(SD.ManagerRole) || User.IsInRole(SD.FrontDeskRole))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="" asp-page="/Admin/Order/OrderList">Order List</a>
+                            </li>
+                        }
+                        @if (User.IsInRole(SD.ManagerRole) || User.IsInRole(SD.KitchenRole))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="" asp-page="/Admin/Order/ManageOrder">Manage Order</a>
+                            </li>
+                        }
+                        @if (User.IsInRole(SD.ManagerRole))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-area="" asp-page="/Admin/Categories/Index">Categories</a>
+                                    <a class="dropdown-item" asp-area="" asp-page="/Admin/FoodTypes/Index">Food Types</a>
+                                    <a class="dropdown-item" asp-area="" asp-page="/Admin/MenuItems/Index">Menu Items</a>
+
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">Register Employee</a>
+                                </div>
+                            </li>
+                        }
+                        <li>
                             <a class="nav-link text-white-50" asp-area="" asp-page="/Customer/Cart/Index">
                                 @await Component.InvokeAsync("ShoppingCart")
                             </a>
