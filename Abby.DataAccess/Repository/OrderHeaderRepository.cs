@@ -22,5 +22,14 @@ namespace Abby.DataAccess.Repository
         {
             _db.OrderHeader.Update(obj);
         }
+
+        public void UpdateStatus(int id, string status)
+        {
+            var orderFromDb = _db.OrderHeader.FirstOrDefault(u => u.Id == id);
+            if (orderFromDb != null)
+            {
+                orderFromDb.Status = status;
+            }
+        }
     }
 }

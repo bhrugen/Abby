@@ -1,6 +1,6 @@
 ﻿@page
 @model AbbyWeb.Pages.Admin.Order.ManageOrderModel
-
+@using Abby.Utility
 
 <h1 class="text-primary py-3">Manage Order's</h1>
 <form method="post">
@@ -28,16 +28,18 @@
                     <div class="col-3 offset-1 d-flex align-content-center">
                         <div class="col-12">
 
-                           
+                            @if (item.OrderHeader.Status == SD.StatusSubmitted)
+                            {
                                 <button type="submit" class="btn btn-primary form-control mb-3" >
                                     <i class="bi bi-check-square"></i> &nbsp; Start Cooking
                                 </button>
-                           
-                                    <button type="submit" class="btn btn-success form-control mb-3" >
+                            }
+                            @if (item.OrderHeader.Status == SD.StatusInProcess)
+                            {
+                                <button type="submit" class="btn btn-success form-control mb-3" >
                                         <i class="bi bi-emoji-laughing"></i> &nbsp; Order Ready
                                     </button>
-                            
-
+                            }
                             <button type="submit" class="btn btn-warning form-control mb-3" >
                                 <i class="bi bi-x-square-fill"></i> &nbsp; Cancel Order
                             </button>
