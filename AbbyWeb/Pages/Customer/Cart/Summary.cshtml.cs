@@ -86,23 +86,8 @@ namespace AbbyWeb.Pages.Customer.Cart
                  var domain = "https://localhost:44322/";
                 var options = new SessionCreateOptions
                 {
-                    LineItems = new List<SessionLineItemOptions>
-                {
-                  new SessionLineItemOptions
-                  {
-                    PriceData = new SessionLineItemPriceDataOptions
-                    {
-                        UnitAmount= (long)(OrderHeader.OrderTotal*100),
-                        Currency="usd",
-                        ProductData= new SessionLineItemPriceDataProductDataOptions
-                        {
-                            Name = "Abby Food Order",
-                            Description="Total Distinct Item - "+quantity
-                        },
-                    },
-                    Quantity = 1
-                  },
-                },
+                    LineItems = new List<SessionLineItemOptions>()
+                ,
                     PaymentMethodTypes = new List<string>
                 {
                   "card",
@@ -111,9 +96,35 @@ namespace AbbyWeb.Pages.Customer.Cart
                     SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={OrderHeader.Id}",
                     CancelUrl = domain + "customer/cart/index",
                 };
+
+                //add line items
+                foreach(var item in ShoppingCartList)
+                {
+                    var sessionLineItem = new SessionLineItemOptions
+                    {
+                        PriceData = new SessionLineItemPriceDataOptions
+                        {
+                            //7.99->799
+                            UnitAmount = (long)(item.MenuItem.Price * 100),
+                            Currency = "usd",
+                            ProductData = new SessionLineItemPriceDataProductDataOptions
+                            {
+                                Name = item.MenuItem.Name
+                            },
+                        },
+                        Quantity = item.Count
+                    };
+                    options.LineItems.Add(sessionLineItem);
+                }
+               
+
+
                 var service = new SessionService();
 				Session session = service.Create(options);
                 Response.Headers.Add("Location", session.Url);
+
+                OrderHeader.SessionId= session.Id;
+                OrderHeader.PaymentIntentId = session.PaymentIntentId;
                 return new StatusCodeResult(303);
             }
 
