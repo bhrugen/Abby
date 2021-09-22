@@ -38,6 +38,11 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+builder.Services.AddAuthentication().AddFacebook(options =>
+{
+    options.AppId = "1214474165704588";
+    options.AppSecret = "2cdfa2b6b443b8b72317b931dbd1572f";
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
