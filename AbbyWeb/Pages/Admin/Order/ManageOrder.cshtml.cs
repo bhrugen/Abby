@@ -2,6 +2,7 @@ using Abby.DataAccess.Repository.IRepository;
 using Abby.Models;
 using Abby.Models.ViewModel;
 using Abby.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Linq;
 
 namespace AbbyWeb.Pages.Admin.Order
 {
+    [Authorize(Roles =$"{SD.ManagerRole},{SD.KitchenRole}")]
     public class ManageOrderModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -34,6 +36,27 @@ namespace AbbyWeb.Pages.Admin.Order
                 };
                 OrderDetailVM.Add(individual);
             }
+        }
+
+        public IActionResult OnPostOrderInProcess(int orderId)
+        {
+            _unitOfWork.OrderHeader.UpdateStatus(orderId, SD.StatusInProcess);
+            _unitOfWork.Save();
+            return RedirectToPage("ManageOrder");
+        }
+
+        public IActionResult OnPostOrderReady(int orderId)
+        {
+            _unitOfWork.OrderHeader.UpdateStatus(orderId, SD.StatusReady);
+            _unitOfWork.Save();
+            return RedirectToPage("ManageOrder");
+        }
+
+        public IActionResult OnPostOrderCancel(int orderId)
+        {
+            _unitOfWork.OrderHeader.UpdateStatus(orderId, SD.StatusCancelled);
+            _unitOfWork.Save();
+            return RedirectToPage("ManageOrder");
         }
     }
 }
